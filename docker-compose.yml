@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  node-app:
+    image: node:6.9.1
+    command: "node /usr/src/app/index.js"
+    volumes:
+      - "./app:/usr/src/app"
+    environment:
+      - MONGO_HOST=db
+      - MONGO_DB=helloworld
+    depends_on:
+      - db
+  db:
+    image: mongo:3.2
+    volumes:
+      - "./db:/data"
